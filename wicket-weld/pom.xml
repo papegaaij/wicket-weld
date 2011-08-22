@@ -20,11 +20,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>wicket-parent</artifactId>
-		<groupId>org.apache.wicket</groupId>
+		<artifactId>wicket-weld-parent</artifactId>
+		<groupId>nl.topicus</groupId>
 		<version>1.5-SNAPSHOT</version>
 	</parent>
-	<groupId>org.apache.wicket</groupId>
+	<groupId>nl.topicus</groupId>
 	<artifactId>wicket-weld</artifactId>
 	<name>Wicket Weld Integration</name>
 	<properties>

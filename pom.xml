@@ -17,17 +17,17 @@
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-			<groupId>org.apache</groupId>
-            <artifactId>apache</artifactId>
-            <version>9</version>	
+	<parent>
+		<groupId>org.apache</groupId>
+		<artifactId>apache</artifactId>
+		<version>9</version>	
 	</parent>
 
-	<groupId>org.apache.wicket</groupId>
-	<artifactId>wicket-parent</artifactId>
+	<groupId>nl.topicus</groupId>
+	<artifactId>wicket-weld-parent</artifactId>
 	<version>1.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Wicket Parent</name>
+	<name>Wicket Weld parent</name>
 	<description>Wicket is a Java-based open source component web application framework.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,174 +35,10 @@
 		<spring.version>3.0.5.RELEASE</spring.version>
 	</properties>
 	
-	<profiles>
-		<profile>
-			<id>release</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<!-- 
-				modules parent and parent are defined not to process their
-				submodules: their release profile is empty. This way we can
-				define which projects to release with a Wicket release from
-				the parent. 
-			-->
-			<modules>
-				<module>wicket</module>
-				<module>wicket-core</module>
-                <module>wicket-util</module>
-				<module>wicket-datetime</module>
-                <module>wicket-request</module>
-				<module>wicket-devutils</module>
-				<module>wicket-extensions</module>
-				<module>wicket-ioc</module>
-				<module>wicket-spring</module>
-				<module>wicket-velocity</module>
-				<module>wicket-auth-roles</module>
-				<module>wicket-guice</module>
-				<module>wicket-jmx</module>
-				<module>wicket-objectssizeof-agent</module>
-				<module>wicket-examples</module>
-				<module>archetypes/quickstart</module>
-			</modules>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<artifactId>maven-remote-resources-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<inherited>true</inherited>
-						<configuration>
-							<aggregate>true</aggregate>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.felix</groupId>
-						<artifactId>maven-bundle-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-				</plugins>
-			</build>
+	<modules>
+		<module>wicket-weld</module>
+	</modules>
 
-			<distributionManagement>
-				<site>
-					<id>local</id>
-					<url>file:target/site</url>
-				</site>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>apache-nexus-deploy</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<modules>
-				<module>wicket</module>
-				<module>wicket-core</module>
-                <module>wicket-util</module>
-				<module>wicket-datetime</module>
-                <module>wicket-request</module>
-				<module>wicket-devutils</module>
-				<module>wicket-extensions</module>
-				<module>wicket-ioc</module>
-				<module>wicket-spring</module>
-				<module>wicket-velocity</module>
-				<module>wicket-auth-roles</module>
-				<module>wicket-guice</module>
-				<module>wicket-jmx</module>
-				<module>wicket-objectssizeof-agent</module>
-				<module>wicket-examples</module>
-				<module>archetypes/quickstart</module>
-			</modules>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<artifactId>maven-remote-resources-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.felix</groupId>
-						<artifactId>maven-bundle-plugin</artifactId>
-						<inherited>true</inherited>
-					</plugin>
-				</plugins>
-			</build>
-
-			<!-- distribution management is inherited from the parent pom -->
-		</profile>
-		<profile>
-			<id>all</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<modules>
-				<module>wicket</module>
-				<module>wicket-core</module>
-                <module>wicket-util</module>
-				<module>wicket-datetime</module>
-                <module>wicket-request</module>
-				<module>wicket-devutils</module>
-				<module>wicket-extensions</module>
-				<module>wicket-ioc</module>
-				<module>wicket-spring</module>
-				<module>wicket-velocity</module>
-				<module>wicket-auth-roles</module>
-				<module>wicket-guice</module>
-				<module>wicket-jmx</module>
-				<module>wicket-objectssizeof-agent</module>
-				<module>wicket-examples</module>
-				<module>archetypes/quickstart</module>
-				<module>testing/wicket-threadtest</module>
-			</modules>
-
-
-			<!-- distribution management is inherited from the parent pom -->
-		</profile>
-	</profiles>
-	<url>http://wicket.apache.org/${project.artifactId}</url>
 	<inceptionYear>2006</inceptionYear>
 	<organization>
 		<name>Apache Software Foundation</name>
@@ -215,48 +51,6 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	<issueManagement>
-		<system>jira</system>
-		<url>http://issues.apache.org/jira/browse/WICKET</url>
-	</issueManagement>
-	<ciManagement>
-		<system>hudson</system>
-		<url>https://hudson.apache.org/hudson/job/Apache%20Wicket%201.5.x/</url>
-	</ciManagement>
-	<scm>
-		<connection>scm:svn:http://svn.apache.org/repos/asf/wicket/releases/1.5-SNAPSHOT</connection>
-		<developerConnection>scm:svn:https://svn.apache.org/repos/asf/wicket/releases/1.5-SNAPSHOT</developerConnection>
-		<url>http://svn.apache.org/viewvc/wicket/releases/1.5-SNAPSHOT</url>
-	</scm>
-	<mailingLists>
-		<mailingList>
-			<name>Wicket Announcements List</name>
-			<post>announce@wicket.apache.org</post>
-			<subscribe>announce-subscribe@wicket.apache.org</subscribe>
-			<unsubscribe>announce-unsubscribe@wicket.apache.org</unsubscribe>
-			<archive>http://www.nabble.com/Wicket---Announce-f13975.html</archive>
-		</mailingList>
-		<mailingList>
-			<name>Wicket User List</name>
-			<post>users@wicket.apache.org</post>
-			<subscribe>users-subscribe@wicket.apache.org</subscribe>
-			<unsubscribe>users-unsubscribe@wicket.apache.org</unsubscribe>
-			<archive>http://www.nabble.com/Wicket---User-f13976.html</archive>
-		</mailingList>
-		<mailingList>
-			<name>Wicket Development List</name>
-			<post>dev@wicket.apache.org</post>
-			<subscribe>dev-subscribe@wicket.apache.org</subscribe>
-			<unsubscribe>dev-unsubscribe@wicket.apache.org</unsubscribe>
-			<archive>http://www.nabble.com/Wicket---Dev-f13977.html</archive>
-		</mailingList>
-		<mailingList>
-			<name>Wicket commit List</name>
-			<subscribe>commits-subscribe@wicket.apache.org</subscribe>
-			<unsubscribe>commits-unsubscribe@wicket.apache.org</unsubscribe>
-			<archive>http://mail-archives.apache.org/mod_mbox/wicket-commits/</archive>
-		</mailingList>
-	</mailingLists>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -343,6 +137,12 @@
 			<dependency>
 				<groupId>org.apache.wicket</groupId>
 				<artifactId>wicket-velocity</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-weld</artifactId>
 				<version>${project.version}</version>
 				<type>jar</type>
 			</dependency>
@@ -826,7 +626,4 @@
 			</plugin>
 		</plugins>
 	</reporting>
-  <modules>
-    <module>wicket-weld</module>
-  </modules>
 </project>
