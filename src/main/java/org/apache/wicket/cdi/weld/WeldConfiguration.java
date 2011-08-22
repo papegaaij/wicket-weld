@@ -37,7 +37,7 @@ import org.jboss.weld.environment.servlet.Listener;
 public class WeldConfiguration
 {
 	private BeanManager beanManager;
-	private ConversationPropagation propagation = ConversationPropagation.NONBOOKMARKABLE;
+	private ConversationPropagation propagation = ConversationPropagation.ALL;
 
 	/**
 	 * Gets the configured bean manager
