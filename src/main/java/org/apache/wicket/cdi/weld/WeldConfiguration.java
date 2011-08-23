@@ -37,7 +37,8 @@ import org.jboss.weld.environment.servlet.Listener;
 public class WeldConfiguration
 {
 	private BeanManager beanManager;
-	private ConversationPropagation propagation = ConversationPropagation.ALL;
+
+	private ConversationPropagation propagation = ConversationPropagation.NONBOOKMARKABLE;
 
 	/**
 	 * Gets the configured bean manager
@@ -62,9 +63,20 @@ public class WeldConfiguration
 		return this;
 	}
 
+	public ConversationPropagation getPropagation()
+	{
+		return propagation;
+	}
+
+	public WeldConfiguration setPropagation(ConversationPropagation propagation)
+	{
+		this.propagation = propagation;
+		return this;
+	}
+
 	private WeldConfiguration resolveBeanManager(ServletContext sc)
 	{
-		BeanManager bm = (BeanManager)sc.getAttribute(Listener.BEAN_MANAGER_ATTRIBUTE_NAME);
+		BeanManager bm = (BeanManager) sc.getAttribute(Listener.BEAN_MANAGER_ATTRIBUTE_NAME);
 
 		if (bm != null)
 		{
@@ -83,7 +95,7 @@ public class WeldConfiguration
 	{
 		if (beanManager == null)
 		{
-			resolveBeanManager(((WebApplication)application).getServletContext());
+			resolveBeanManager(((WebApplication) application).getServletContext());
 		}
 		if (beanManager == null)
 		{
